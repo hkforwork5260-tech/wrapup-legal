@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wrapup 초대</title>
+<style>
+  :root { color-scheme: light dark; --ink:#22262F; --mute:#6B7584; --bg:#FFFFFF; --band:#F2F3F5; --btn:#22262F; --btnInk:#FFFFFF; }
+  @media (prefers-color-scheme: dark) { :root { --ink:#E8ECF1; --mute:#8E98A6; --bg:#181C23; --band:#232832; --btn:#E8ECF1; --btnInk:#181C23; } }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif; line-height:1.6; }
+  main { max-width:420px; margin:0 auto; padding:56px 20px 40px; }
+  h1 { font-size:24px; letter-spacing:-.03em; margin:0 0 8px; }
+  p { margin:0 0 20px; color:var(--mute); font-size:15px; }
+  .code { background:var(--band); border-radius:16px; padding:18px; text-align:center; font-size:30px; font-weight:800; letter-spacing:.18em; margin:0 0 20px; }
+  a.btn { display:block; text-align:center; background:var(--btn); color:var(--btnInk); text-decoration:none; font-weight:700; border-radius:14px; padding:16px; font-size:16px; margin:0 0 12px; }
+  a.sub { display:block; text-align:center; color:var(--ink); font-size:15px; padding:10px; }
+  .note { font-size:13px; margin-top:24px; }
+</style>
+</head>
+<body><main>
+<h1>Wrapup 방 초대</h1>
+<p>앱이 열리면 코드가 자동으로 들어가요.</p>
+<div class="code" id="code">------</div>
+<a class="btn" id="open" href="#">앱에서 열기</a>
+<a class="sub" href="https://play.google.com/store/apps/details?id=com.wrapup.app">안드로이드: Play 스토어에서 받기</a>
+<a class="sub" href="https://apps.apple.com/kr/search?term=Wrapup">아이폰: App Store에서 받기</a>
+<p class="note">앱을 받은 뒤 홈의 "코드 입력"에 위 코드를 넣어도 돼요.</p>
+</main>
+<script>
+  var c = (new URLSearchParams(location.search).get('c') || '').toUpperCase();
+  if (/^[A-Z0-9]{6}$/.test(c)) {
+    document.getElementById('code').textContent = c;
+    var app = 'com.wrapup.app://join?c=' + c;
+    document.getElementById('open').href = app;
+    location.href = app;
+  } else {
+    document.getElementById('code').textContent = '코드 없음';
+  }
+</script>
+</body>
+</html>
